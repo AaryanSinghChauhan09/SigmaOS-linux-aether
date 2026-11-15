@@ -1,0 +1,14 @@
+[package]
+name = "sigmaos-linux-aether"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+name = "sigmaos_linux_aether"
+path = "src/lib.rs"
+
+[[bin]]
+name = "aether"
+path = "src/main.rs"
+
+[dependencies]

@@ -1,0 +1,1 @@
+# SigmaOS-linux-aether\n\nSigmaOS aether - Native theming and palette harmonization engine\n
