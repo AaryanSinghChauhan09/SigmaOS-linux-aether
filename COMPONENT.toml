@@ -3,7 +3,7 @@ name = "SigmaOS-linux-aether"
 tier = 2
 stability = "scaffold"
 language = "rust"
-description = "linux-aether component"
+description = "SigmaOS Linux Aether - Native theming engine (omacom/aether parity)"
 upstream = []
 
 [contract]
