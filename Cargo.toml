@@ -1,14 +1,15 @@
 [package]
-name = "sigmaos-linux-aether"
+name = "SigmaOS-linux-aether"
 version = "0.1.0"
 edition = "2021"
+license = "Apache-2.0"
+description = "SigmaOS sigmaos_linux_aether component"
 
 [lib]
 name = "sigmaos_linux_aether"
 path = "src/lib.rs"
 
-[[bin]]
-name = "aether"
-path = "src/main.rs"
-
 [dependencies]
+thiserror = "1"
+
+[dev-dependencies]

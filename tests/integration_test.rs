@@ -1,35 +1,45 @@
-use sigmaos_linux_aether::{AetherEngine, Color, Palette};
+use sigmaos_linux_aether::Component;
 
 #[test]
-fn test_color_rgb_aaa() {
+fn test_component_lifecycle_aaa() {
     // Arrange
-    let c = Color::new("#1e1e2e").unwrap();
+    let mut c = Component::new();
+    assert!(!c.is_ready());
     // Act
-    let (r, g, b) = c.to_rgb();
+    c.init().unwrap();
     // Assert
-    assert_eq!(r, 0x1e);
-    assert_eq!(g, 0x1e);
-    assert_eq!(b, 0x2e);
+    assert!(c.is_ready());
 }
 
 #[test]
-fn test_palette_css_aaa() {
+fn test_run_requires_init_aaa() {
     // Arrange
-    let mut p = Palette::new("test");
-    p.set("bg", Color::new("#000000").unwrap());
+    let c = Component::new();
     // Act
-    let css = p.to_css_vars();
+    let res = c.run();
     // Assert
-    assert!(css.contains("--bg: #000000;"));
+    assert!(res.is_err());
 }
 
 #[test]
-fn test_aether_apply_aaa() {
+fn test_run_after_init_aaa() {
     // Arrange
-    let mut engine = AetherEngine::new();
+    let mut c = Component::new();
+    c.init().unwrap();
     // Act
-    let res = engine.apply("catppuccin-mocha");
+    let res = c.run();
     // Assert
     assert!(res.is_ok());
-    assert_eq!(engine.active.as_deref(), Some("catppuccin-mocha"));
+}
+
+#[test]
+fn test_reset_then_run_fails_aaa() {
+    // Arrange
+    let mut c = Component::new();
+    c.init().unwrap();
+    c.reset();
+    // Act
+    let res = c.run();
+    // Assert
+    assert!(res.is_err());
 }
